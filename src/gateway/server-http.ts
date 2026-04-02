@@ -981,25 +981,7 @@ export function createGatewayHttpServer(opts: {
         }),
       );
 
-      if (controlUiEnabled) {
-        requestStages.push({
-          name: "control-ui-avatar",
-          run: () =>
-            handleControlUiAvatarRequest(req, res, {
-              basePath: controlUiBasePath,
-              resolveAvatar: (agentId) => resolveAgentAvatar(configSnapshot, agentId),
-            }),
-        });
-        requestStages.push({
-          name: "control-ui-http",
-          run: () =>
-            handleControlUiHttpRequest(req, res, {
-              basePath: controlUiBasePath,
-              config: configSnapshot,
-              root: controlUiRoot,
-            }),
-        });
-      }
+      // controlUi routes have been removed for headless instance
 
       requestStages.push({
         name: "gateway-probes",
